@@ -32,6 +32,9 @@ services:
     container_name: my-guacd3
     image: guacamole/guacd:latest
     restart: unless-stopped
+    volumes:
+    - ./drive:/drive:rw
+    - ./record:/record:rw
     environment:
       GUACAMOLE_HOSTNAME: guacamole
       POSTGRES_HOSTNAME: postgres
@@ -101,6 +104,10 @@ services:
       - ./opt/nginx/certs:/opt/nginx/certs
       - ./etc/hosts:/etc/hosts
     network_mode: "host"
+   # run nginx
+   #    command: /bin/bash -c "nginx -g 'daemon off;'"
+   #    # nginx-debug-mode
+   #    #   command: /bin/bash -c "nginx-debug -g 'daemon off;'"
 #  below for debug 
 #    networks:
 #     # - guacamole-network
